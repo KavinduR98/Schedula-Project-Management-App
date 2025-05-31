@@ -45,6 +45,10 @@ export default function Show({ project, tasks, queryParams }) {
                                             </span>
                                         </p>
                                     </div>
+                                    <div className="mt-4">
+                                        <label className="text-lg font-bold">Created By</label>
+                                        <p className="mt-1">{project.createdBy.name}</p>
+                                    </div>
                                 </div>
                                 <div>
                                     <div>
