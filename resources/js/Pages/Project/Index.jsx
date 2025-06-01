@@ -40,6 +40,13 @@ export default function Index({ projects, queryParams = null, success }) {
         router.get(route('project.index'), queryParams);
     }
 
+    const deleteProject = (project) => {
+        if (!window.confirm('Are you sure you want to delete the project?')) {
+            return;
+        }
+        router.delete(route('project.destroy', project.id));
+    }
+
     return (
         <AuthenticatedLayout
             header={
@@ -60,7 +67,7 @@ export default function Index({ projects, queryParams = null, success }) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    { success && (
+                    {success && (
                         <div className="px-4 py-2 mb-4 text-white rounded bg-emerald-500">
                             {success}
                         </div>
@@ -172,13 +179,15 @@ export default function Index({ projects, queryParams = null, success }) {
                                                 <td className="px-3 py-2 text-nowrap">{project.created_at}</td>
                                                 <td className="px-3 py-2 text-nowrap">{project.due_date}</td>
                                                 <td className="px-3 py-2">{project.createdBy.name}</td>
-                                                <td className="px-3 py-2">
+                                                <td className="px-3 py-2 text-nowrap">
                                                     <Link href={route('project.edit', project.id)} className="mx-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                                         Edit
                                                     </Link>
-                                                    <Link href={route('project.destroy', project.id)} className="mx-1 font-medium text-red-600 dark:text-red-500 hover:underline">
+                                                    <button
+                                                        onClick={(e) => deleteProject(project)}
+                                                        className="mx-1 font-medium text-red-600 dark:text-red-500 hover:underline">
                                                         Delete
-                                                    </Link>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}
