@@ -1,24 +1,24 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { PROJECT_STATUS_CLASS_MAP, PROJECT_STATUS_TEXT_MAP } from "@/constants.jsx";
+import { TASK_STATUS_CLASS_MAP, TASK_STATUS_TEXT_MAP } from "@/constants.jsx";
 import { Head } from "@inertiajs/react";
 import TasksTable from "../Task/TasksTable";
 
-export default function Show({ project, success, tasks, queryParams }) {
+export default function Show({ task, tasks, queryParams }) {
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                    {`Project "${project.name}"`}
+                    {`Task "${task.name}"`}
                 </h2>
             }
         >
-            <Head title={`Project "${project.name}"`} />
+            <Head title={`Task "${task.name}"`} />
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                         <div>
                             <img
-                                src={project.image_path}
+                                src={task.image_path}
                                 alt=""
                                 className="object-cover w-full h-64"
                             />
@@ -27,48 +27,48 @@ export default function Show({ project, success, tasks, queryParams }) {
                             <div className="grid grid-cols-2 gap-1 mt-2">
                                 <div>
                                     <div>
-                                        <label className="text-lg font-bold">Project ID</label>
-                                        <p className="mt-1">{project.id}</p>
+                                        <label className="text-lg font-bold">Task ID</label>
+                                        <p className="mt-1">{task.id}</p>
                                     </div>
                                     <div className="mt-4">
-                                        <label className="text-lg font-bold">Project Name</label>
-                                        <p className="mt-1">{project.name}</p>
+                                        <label className="text-lg font-bold">Task Name</label>
+                                        <p className="mt-1">{task.name}</p>
                                     </div>
                                     <div className="mt-4">
-                                        <label className="text-lg font-bold">Project Status</label>
+                                        <label className="text-lg font-bold">Task Status</label>
                                         <p className="mt-1">
                                             <span className={
                                                 "px-2 py-1 rounded text-white " +
-                                                PROJECT_STATUS_CLASS_MAP[project.status]
+                                                TASK_STATUS_CLASS_MAP[task.status]
                                             }>
-                                                {PROJECT_STATUS_TEXT_MAP[project.status]}
+                                                {TASK_STATUS_TEXT_MAP[task.status]}
                                             </span>
                                         </p>
                                     </div>
                                     <div className="mt-4">
                                         <label className="text-lg font-bold">Created By</label>
-                                        <p className="mt-1">{project.createdBy.name}</p>
+                                        <p className="mt-1">{task.createdBy.name}</p>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
                                         <label className="text-lg font-bold">Due Date</label>
-                                        <p className="mt-1">{project.due_date}</p>
+                                        <p className="mt-1">{task.due_date}</p>
                                     </div>
                                     <div>
                                         <label className="text-lg font-bold">Create Date</label>
-                                        <p className="mt-1">{project.created_at}</p>
+                                        <p className="mt-1">{task.created_at}</p>
                                     </div>
                                     <div>
                                         <label className="text-lg font-bold">Updated By</label>
-                                        <p className="mt-1">{project.updatedBy.name}</p>
+                                        <p className="mt-1">{task.updatedBy.name}</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="mt-4">
-                                <label className="text-lg font-bold">Project Description</label>
-                                <p className="mt-1">{project.description}</p>
+                                <label className="text-lg font-bold">Task Description</label>
+                                <p className="mt-1">{task.description}</p>
                             </div>
                         </div>
                     </div>
@@ -81,9 +81,8 @@ export default function Show({ project, success, tasks, queryParams }) {
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <TasksTable 
                             tasks={tasks} 
-                            success={success}
                             queryParams={queryParams}
-                            hideProjectColumn={true} />
+                            hideTaskColumn={true} />
                         </div>
                     </div>
                 </div>
