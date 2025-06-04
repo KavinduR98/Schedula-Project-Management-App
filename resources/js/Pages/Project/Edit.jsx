@@ -115,6 +115,7 @@ export default function Edit({ project }) {
                                 <SelectInput
                                     id="project_status"
                                     name="status"
+                                    value={project.status}
                                     className="block w-full mt-1"
                                     onChange={(e) => setData('status', e.target.value)}
                                 >
